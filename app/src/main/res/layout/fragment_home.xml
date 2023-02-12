@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSecondary">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_game_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/game_1"
+        app:layout_constraintBottom_toTopOf="@id/img_game_3"
+        app:layout_constraintEnd_toStartOf="@+id/img_game_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_game"
+        app:srcCompat="@drawable/ic_greater_than_equal" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_game_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/game_2"
+        app:layout_constraintBottom_toTopOf="@id/img_game_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_game_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_game"
+        app:srcCompat="@drawable/ic_true_or_false" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_game_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/game_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/img_game_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_game_1"
+        app:srcCompat="@drawable/ic_memory" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_game_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/game_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_game_3"
+        app:layout_constraintTop_toBottomOf="@id/img_game_2"
+        app:srcCompat="@drawable/ic_exam" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/img_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_game_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/game_1"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_game_1"
+        app:layout_constraintStart_toStartOf="@+id/img_game_1"
+        app:layout_constraintTop_toBottomOf="@+id/img_game_1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_game_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/game_2"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_game_2"
+        app:layout_constraintStart_toStartOf="@+id/img_game_2"
+        app:layout_constraintTop_toBottomOf="@+id/img_game_2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_game_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/game_3"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_game_3"
+        app:layout_constraintStart_toStartOf="@id/img_game_3"
+        app:layout_constraintTop_toBottomOf="@id/img_game_3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_game_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/game_4"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_game_4"
+        app:layout_constraintStart_toStartOf="@id/img_game_4"
+        app:layout_constraintTop_toBottomOf="@id/img_game_4" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_level_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_level"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_game_1"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_score_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_score"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_game_1"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_game_1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_level_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_level"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_game_2"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_score_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_score"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_game_2"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_game_2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_level_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_level"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_game_3"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_score_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_score"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_game_3"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_3"
+        app:layout_constraintTop_toTopOf="@+id/tv_game_3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_level_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_level"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_game_4"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_4" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_high_score_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/highest_score"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_game_4"
+        app:layout_constraintEnd_toStartOf="@+id/tv_game_4"
+        app:layout_constraintTop_toTopOf="@+id/tv_game_4" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_game"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="300dp"
+        android:gravity="center"
+        android:text="@string/app_title_name"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

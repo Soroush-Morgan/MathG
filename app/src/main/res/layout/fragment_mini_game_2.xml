@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSecondary">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/level"
+        app:layout_constraintBottom_toTopOf="@id/tv_level"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_level" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/score"
+        app:layout_constraintBottom_toTopOf="@id/tv_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_score" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/sign"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_equal" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/timer"
+        app:layout_constraintBottom_toTopOf="@id/tv_timer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_timer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_expression1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/expression1"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_sign"
+        app:layout_constraintEnd_toStartOf="@id/img_sign"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_sign" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_expression2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/expression2"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_sign"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/img_sign"
+        app:layout_constraintTop_toTopOf="@id/img_sign" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/current_level"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/img_level"
+        app:layout_constraintStart_toEndOf="@+id/tv_level_dialog"
+        app:layout_constraintTop_toBottomOf="@id/img_level" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_level_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/level_dialog"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_level"
+        app:layout_constraintStart_toStartOf="@id/img_level"
+        app:layout_constraintTop_toBottomOf="@+id/img_level" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/answer_result"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_sign"
+        app:layout_constraintStart_toStartOf="@+id/img_sign"
+        app:layout_constraintTop_toBottomOf="@+id/img_sign" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/high_score"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/img_score"
+        app:layout_constraintStart_toEndOf="@id/tv_score_dialog"
+        app:layout_constraintTop_toBottomOf="@id/img_score" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_score_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/score_dialog"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_score"
+        app:layout_constraintStart_toStartOf="@id/img_score"
+        app:layout_constraintTop_toBottomOf="@+id/img_score" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/countdown"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/img_timer"
+        app:layout_constraintStart_toEndOf="@id/tv_timer_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/img_timer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_timer_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/timer_dialog"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_timer"
+        app:layout_constraintStart_toStartOf="@id/img_timer"
+        app:layout_constraintTop_toBottomOf="@id/img_timer" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/img_true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundcorner_true"
+            android:contentDescription="@string/true_button"
+            app:srcCompat="@drawable/ic_true" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/img_false"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundcorner_false"
+            android:contentDescription="@string/false_button"
+            app:srcCompat="@drawable/ic_false" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

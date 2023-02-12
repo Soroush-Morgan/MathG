@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeFragment">
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.project.mathg.ui.home.HomeFragment"
+        android:label="@string/home_fragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_HomeFragment_to_MiniGame1Fragment"
+            app:destination="@id/MiniGame1Fragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_MiniGame2Fragment"
+            app:destination="@id/MiniGame2Fragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_MiniGame3Fragment"
+            app:destination="@id/MiniGame3Fragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_MiniGame4Fragment"
+            app:destination="@id/MiniGame4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MiniGame1Fragment"
+        android:name="com.project.mathg.ui.game.MiniGame1Fragment"
+        android:label="@string/mini_game_1_fragment"
+        tools:layout="@layout/fragment_mini_game_1">
+        <action
+            android:id="@+id/action_MiniGame1Fragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MiniGame2Fragment"
+        android:name="com.project.mathg.ui.game.MiniGame2Fragment"
+        android:label="@string/mini_game_2_fragment"
+        tools:layout="@layout/fragment_mini_game_2">
+        <action
+            android:id="@+id/action_MiniGame2Fragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MiniGame3Fragment"
+        android:name="com.project.mathg.ui.game.MiniGame3Fragment"
+        android:label="@string/mini_game_3_fragment"
+        tools:layout="@layout/fragment_mini_game_3">
+        <action
+            android:id="@+id/action_MiniGame3Fragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MiniGame4Fragment"
+        android:name="com.project.mathg.ui.game.MiniGame4Fragment"
+        android:label="@string/mini_game_4_fragment"
+        tools:layout="@layout/fragment_mini_game_4">
+        <action
+            android:id="@+id/action_MiniGame4Fragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+</navigation>
