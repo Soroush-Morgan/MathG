@@ -5,12 +5,15 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.project.mathg.R
@@ -20,6 +23,7 @@ import kotlin.random.Random
 @Suppress("DEPRECATION")
 class MiniGame2Fragment : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var timer: CountDownTimer
     private var animation: Animation? = null
     private var _binding: FragmentMiniGame2Binding? = null
     private val binding get() = _binding!!
@@ -38,10 +42,11 @@ class MiniGame2Fragment : Fragment() {
     private var exp2 = "$rand3 $operator2 $rand4"
     private var randCorrectAnswerDialog =
         arrayListOf("آفرین", "احسنت", "عالی بود", "فوق العاده بود", "محشر بود")
-    private var randWrongAnswerDialog =
-        arrayListOf("مطمئنی?", "دوباره سعی کن!", "فکر نکنم!")
-    private var randOperator: Int = Random.nextInt(0, 7)
+    private var randWrongAnswerDialog = arrayListOf("مطمئنی?", "دوباره سعی کن!", "فکر نکنم!")
+    private var randOperator: Int = Random.nextInt(0, 8)
     private var score = 0
+    private var lSlider = Slide()
+    private var rSlider = Slide()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -49,11 +54,22 @@ class MiniGame2Fragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    timer.cancel()
+                    findNavController().navigate(R.id.action_MiniGame2Fragment_to_HomeFragment)
+                }
+            })
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("record", Context.MODE_PRIVATE)
         var timeCount = 60.0
-        val timer = object : CountDownTimer(60000, 100) {
+        timer = object : CountDownTimer(60000, 100) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTimer.text = String.format("%.1f", timeCount)
                 timeCount -= 0.1
@@ -135,23 +151,27 @@ class MiniGame2Fragment : Fragment() {
             if (rand12 != rand34) {
                 binding.tvResult.text = randCorrectAnswerDialog[Random.nextInt(0, 5)]
                 binding.tvResult.setTextColor(Color.parseColor("#006400"))
+                rSlider.slideEdge = Gravity.END
+                TransitionManager.beginDelayedTransition(binding.constraintLayout, rSlider)
                 binding.tvResult.visibility = View.VISIBLE
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
                 binding.tvResult.startAnimation(animation)
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
                 binding.tvResult.startAnimation(animation)
-                Handler().postDelayed({ binding.tvResult.visibility = View.GONE }, 1000)
+                binding.tvResult.visibility = View.GONE
                 binding.tvScore.text = score.inc().toString()
                 score++
             } else {
                 binding.tvResult.text = randWrongAnswerDialog[Random.nextInt(0, 3)]
                 binding.tvResult.setTextColor(Color.parseColor("#640000"))
+                lSlider.slideEdge = Gravity.START
+                TransitionManager.beginDelayedTransition(binding.constraintLayout, lSlider)
                 binding.tvResult.visibility = View.VISIBLE
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
                 binding.tvResult.startAnimation(animation)
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
                 binding.tvResult.startAnimation(animation)
-                Handler().postDelayed({ binding.tvResult.visibility = View.GONE }, 1000)
+                binding.tvResult.visibility = View.GONE
             }
             problemsGenerator(rand12 != rand34)
         }
@@ -159,23 +179,27 @@ class MiniGame2Fragment : Fragment() {
             if (rand12 == rand34) {
                 binding.tvResult.text = randCorrectAnswerDialog[Random.nextInt(0, 5)]
                 binding.tvResult.setTextColor(Color.parseColor("#006400"))
+                rSlider.slideEdge = Gravity.END
+                TransitionManager.beginDelayedTransition(binding.constraintLayout, rSlider)
                 binding.tvResult.visibility = View.VISIBLE
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
                 binding.tvResult.startAnimation(animation)
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
                 binding.tvResult.startAnimation(animation)
-                Handler().postDelayed({ binding.tvResult.visibility = View.GONE }, 1000)
+                binding.tvResult.visibility = View.GONE
                 binding.tvScore.text = score.inc().toString()
                 score++
             } else {
                 binding.tvResult.text = randWrongAnswerDialog[Random.nextInt(0, 3)]
                 binding.tvResult.setTextColor(Color.parseColor("#640000"))
+                lSlider.slideEdge = Gravity.START
+                TransitionManager.beginDelayedTransition(binding.constraintLayout, lSlider)
                 binding.tvResult.visibility = View.VISIBLE
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
                 binding.tvResult.startAnimation(animation)
                 animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
                 binding.tvResult.startAnimation(animation)
-                Handler().postDelayed({ binding.tvResult.visibility = View.GONE }, 1000)
+                binding.tvResult.visibility = View.GONE
             }
             problemsGenerator(rand12 == rand34)
         }
@@ -199,7 +223,7 @@ class MiniGame2Fragment : Fragment() {
             rand3 = Random.nextInt(randFrom, randUntil)
             rand4 = Random.nextInt(randFrom, randUntil)
         }
-        randOperator = Random.nextInt(0, 7)
+        randOperator = Random.nextInt(0, 8)
         when (randOperator) {
             0 -> {
                 rand12 = rand1 + rand2
@@ -259,7 +283,8 @@ class MiniGame2Fragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        timer.cancel()
         _binding = null
+        super.onDestroyView()
     }
 }
