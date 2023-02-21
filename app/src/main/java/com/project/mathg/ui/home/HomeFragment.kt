@@ -29,12 +29,16 @@ class HomeFragment : Fragment() {
         val highScoreMiniGame1 = sharedPreferences.getInt("scoreMiniGame1", 0)
         val highLevelMiniGame2 = sharedPreferences.getInt("levelMiniGame2", 0)
         val highScoreMiniGame2 = sharedPreferences.getInt("scoreMiniGame2", 0)
+        val highLevelMiniGame3 = sharedPreferences.getInt("levelMiniGame3", 0)
+        val highScoreMiniGame3 = sharedPreferences.getInt("scoreMiniGame3", 0)
         val highLevelMiniGame4 = sharedPreferences.getInt("levelMiniGame4", 0)
         val highScoreMiniGame4 = sharedPreferences.getInt("scoreMiniGame4", 0)
         binding.tvHighLevel1.text = highLevelMiniGame1.toString()
         binding.tvHighScore1.text = highScoreMiniGame1.toString()
         binding.tvHighLevel2.text = highLevelMiniGame2.toString()
         binding.tvHighScore2.text = highScoreMiniGame2.toString()
+        binding.tvHighLevel3.text = highLevelMiniGame3.toString()
+        binding.tvHighScore3.text = highScoreMiniGame3.toString()
         binding.tvHighLevel4.text = highLevelMiniGame4.toString()
         binding.tvHighScore4.text = highScoreMiniGame4.toString()
         binding.imgGame1.setOnClickListener {
@@ -42,6 +46,9 @@ class HomeFragment : Fragment() {
         }
         binding.imgGame2.setOnClickListener {
             findNavController().navigate(R.id.action_HomeFragment_to_MiniGame2Fragment)
+        }
+        binding.imgGame3.setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_MiniGame3Fragment)
         }
         binding.imgGame4.setOnClickListener {
             findNavController().navigate(R.id.action_HomeFragment_to_MiniGame4Fragment)

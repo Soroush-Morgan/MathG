@@ -31,6 +31,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_score" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/timer"
+        app:layout_constraintBottom_toTopOf="@id/tv_timer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_timer" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_level"
         android:layout_width="wrap_content"
@@ -83,10 +95,36 @@
         app:layout_constraintStart_toStartOf="@id/img_score"
         app:layout_constraintTop_toBottomOf="@+id/img_score" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/countdown"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/img_timer"
+        app:layout_constraintStart_toEndOf="@id/tv_timer_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/img_timer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_timer_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/timer_dialog"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_timer"
+        app:layout_constraintStart_toStartOf="@id/img_timer"
+        app:layout_constraintTop_toBottomOf="@id/img_timer" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,9 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:horizontalSpacing="8dp"
-            android:numColumns="3"
-            android:verticalSpacing="8dp"
-            tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+            android:numColumns="4"
+            tools:listitem="@layout/grid_items" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
