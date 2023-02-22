@@ -24,6 +24,7 @@ class MiniGame3Fragment : Fragment() {
     private lateinit var timer: CountDownTimer
     private var _binding: FragmentMiniGame3Binding? = null
     private val binding get() = _binding!!
+    private var checker: Int = 0
     private var level = 1
     private var pairList = arrayListOf<Pair<String, Int>>()
     private var list = arrayListOf<String>()
@@ -115,6 +116,11 @@ class MiniGame3Fragment : Fragment() {
         list.shuffle()
         val itemAdapter = GVAdapter(itemList = list)
         itemGV.adapter = itemAdapter
+        itemGV.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            if (pairList.elementAt(position).first == pairList.elementAt(position).second.toString())
+            else
+                Toast.makeText(requireContext(), " that not my boy ", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun listGenerator() {
