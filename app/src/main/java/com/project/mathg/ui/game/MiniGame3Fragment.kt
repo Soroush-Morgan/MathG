@@ -4,11 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.GridView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -24,7 +25,8 @@ class MiniGame3Fragment : Fragment() {
     private var _binding: FragmentMiniGame3Binding? = null
     private val binding get() = _binding!!
     private var level = 1
-    private var list = arrayListOf<Pair<String, Int>>()
+    private var pairList = arrayListOf<Pair<String, Int>>()
+    private var list = arrayListOf<String>()
     private var operator: Char? = null
     private var randFrom: Int = 1
     private var randUntil: Int = 10
@@ -75,6 +77,11 @@ class MiniGame3Fragment : Fragment() {
             }
         }
         itemGV = binding.table
+        list()
+        timer.start()
+    }
+
+    private fun list() {
         when (randOperator) {
             0 -> {
                 rand12 = rand1 + rand2
@@ -89,49 +96,63 @@ class MiniGame3Fragment : Fragment() {
                 operator = '*'
             }
             3 -> {
-                rand12 = rand1 / rand2
-                operator = '/'
-            }
-        }
-        exp = "$rand1 $operator $rand2"
-        list.add(Pair(exp, rand12))
-        list()
-        val itemAdapter = GVAdapter(itemList = list)
-        itemGV.adapter = itemAdapter
-        timer.start()
-    }
-
-    private fun list() {
-        listGenerator()
-        Log.e("soroush", list.size.toString())
-    }
-
-    private fun listGenerator() {
-        list.forEach {
-            rand1 = Random.nextInt(randFrom, randUntil)
-            rand2 = Random.nextInt(randFrom, randUntil)
-            randOperator = Random.nextInt(0, 4)
-            when (randOperator) {
-                0 -> {
+                if (rand1 % rand2 == 0) {
+                    rand12 = rand1 / rand2
+                    operator = '/'
+                } else {
                     rand12 = rand1 + rand2
                     operator = '+'
                 }
-                1 -> {
-                    rand12 = rand1 - rand2
-                    operator = '-'
-                }
-                2 -> {
-                    rand12 = rand1 * rand2
-                    operator = '*'
-                }
-                3 -> {
+            }
+        }
+        exp = "$rand1 $operator $rand2"
+        pairList.add(Pair(exp, rand12))
+        listGenerator()
+        pairList.forEach {
+            list.add(it.first)
+            list.add(it.second.toString())
+        }
+        list.shuffle()
+        val itemAdapter = GVAdapter(itemList = list)
+        itemGV.adapter = itemAdapter
+    }
+
+    private fun listGenerator() {
+        rand1 = Random.nextInt(randFrom, randUntil)
+        rand2 = Random.nextInt(randFrom, randUntil)
+        randOperator = Random.nextInt(0, 4)
+        when (randOperator) {
+            0 -> {
+                rand12 = rand1 + rand2
+                operator = '+'
+            }
+            1 -> {
+                rand12 = rand1 - rand2
+                operator = '-'
+            }
+            2 -> {
+                rand12 = rand1 * rand2
+                operator = '*'
+            }
+            3 -> {
+                if (rand1 % rand2 == 0) {
                     rand12 = rand1 / rand2
                     operator = '/'
+                } else {
+                    rand12 = rand1 + rand2
+                    operator = '+'
                 }
             }
-            exp = "$rand1 $operator $rand2"
-            if (it.second != rand12 && list.size <= 8)
-                list.add(Pair(exp, rand12))
+        }
+        exp = "$rand1 $operator $rand2"
+        if (pairList.size <= 7) {
+            pairList.forEach {
+                if (it.second != rand12) {
+                    pairList.add(Pair(exp, rand12))
+                } else
+                    return listGenerator()
+                return listGenerator()
+            }
         }
     }
 

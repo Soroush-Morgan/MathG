@@ -42,5 +42,6 @@
     <string name="timer">Timer</string>
     <string name="timer_dialog">: زمان</string>
     <string name="true_button">True Button</string>
+    <string name="unknown">\?</string>
     <string name="unknown_expression">Unknown Expression</string>
 </resources>
