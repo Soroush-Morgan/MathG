@@ -32,16 +32,16 @@
         app:srcCompat="@drawable/ic_score" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_timer"
+        android:id="@+id/img_health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="?attr/colorSecondary"
-        android:contentDescription="@string/timer"
-        app:layout_constraintBottom_toTopOf="@id/tv_timer"
+        android:contentDescription="@string/health"
+        app:layout_constraintBottom_toTopOf="@id/tv_health"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_timer" />
+        app:srcCompat="@drawable/ic_heart" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_level"
@@ -96,30 +96,30 @@
         app:layout_constraintTop_toBottomOf="@+id/img_score" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_timer"
+        android:id="@+id/tv_health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:gravity="center"
-        android:text="@string/countdown"
+        android:text="@string/remain_health"
         android:textColor="?attr/colorPrimary"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/img_timer"
-        app:layout_constraintStart_toEndOf="@id/tv_timer_dialog"
-        app:layout_constraintTop_toBottomOf="@+id/img_timer" />
+        app:layout_constraintEnd_toEndOf="@id/img_health"
+        app:layout_constraintStart_toEndOf="@id/tv_health_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/img_health" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_timer_dialog"
+        android:id="@+id/tv_health_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:gravity="center"
-        android:text="@string/timer_dialog"
+        android:text="@string/health_dialog"
         android:textColor="?attr/colorPrimary"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/tv_timer"
-        app:layout_constraintStart_toStartOf="@id/img_timer"
-        app:layout_constraintTop_toBottomOf="@id/img_timer" />
+        app:layout_constraintEnd_toStartOf="@id/tv_health"
+        app:layout_constraintStart_toStartOf="@id/img_health"
+        app:layout_constraintTop_toBottomOf="@id/img_health" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -130,14 +130,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_score">
 
-        <GridView
-            android:id="@+id/table"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:horizontalSpacing="8dp"
-            android:numColumns="4"
-            android:verticalSpacing="8dp"
             tools:listitem="@layout/grid_items" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

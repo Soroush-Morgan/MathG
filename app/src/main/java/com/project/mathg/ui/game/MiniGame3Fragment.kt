@@ -1,33 +1,30 @@
 package com.project.mathg.ui.game
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.GridView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.project.mathg.R
-import com.project.mathg.adapter.GVAdapter
+import com.project.mathg.adapter.RecyclerViewAdapter
 import com.project.mathg.databinding.FragmentMiniGame3Binding
+import com.project.mathg.model.ListItem
 import kotlin.random.Random
 
 class MiniGame3Fragment : Fragment() {
-    private lateinit var itemGV: GridView
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var timer: CountDownTimer
     private var _binding: FragmentMiniGame3Binding? = null
     private val binding get() = _binding!!
-    private var checker: Int = 0
-    private var level = 1
+    private var list = ArrayList<ListItem>()
+    private var answerId: Int = 0
+    private var adapter = RecyclerViewAdapter(list)
+    private var level = 0
     private var pairList = arrayListOf<Pair<String, Int>>()
-    private var list = arrayListOf<String>()
     private var operator: Char? = null
     private var randFrom: Int = 1
     private var randUntil: Int = 10
@@ -36,6 +33,7 @@ class MiniGame3Fragment : Fragment() {
     private var rand12: Int = rand1 + rand2
     private var exp = "$rand1 $operator $rand2"
     private var randOperator: Int = Random.nextInt(0, 3)
+
     private var score = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,7 +47,6 @@ class MiniGame3Fragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    timer.cancel()
                     findNavController().navigate(R.id.action_MiniGame3Fragment_to_HomeFragment)
                 }
             })
@@ -57,29 +54,20 @@ class MiniGame3Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireActivity().getSharedPreferences("record", Context.MODE_PRIVATE)
-        var timeCount = 60.0
-        timer = object : CountDownTimer(60000, 100) {
-            override fun onTick(millisUntilFinished: Long) {
-                binding.tvTimer.text = String.format("%.1f", timeCount)
-                timeCount -= 0.1
-            }
-
-            override fun onFinish() {
-                val highLevel = sharedPreferences.getInt("levelMiniGame3", 0)
-                val highScore = sharedPreferences.getInt("scoreMiniGame3", 0)
-                if (highLevel <= level) {
-                    sharedPreferences.edit().putInt("levelMiniGame3", level).apply()
-                }
-                if (highScore <= score) {
-                    sharedPreferences.edit().putInt("scoreMiniGame3", score).apply()
-                }
-                findNavController().navigate(R.id.action_MiniGame3Fragment_to_HomeFragment)
-            }
+        /*sharedPreferences = requireActivity().getSharedPreferences("record", Context.MODE_PRIVATE)
+        val highLevel = sharedPreferences.getInt("levelMiniGame3", 0)
+        val highScore = sharedPreferences.getInt("scoreMiniGame3", 0)
+        if (highLevel <= level) {
+            sharedPreferences.edit().putInt("levelMiniGame3", level).apply()
         }
-        itemGV = binding.table
+        if (highScore <= score) {
+            sharedPreferences.edit().putInt("scoreMiniGame3", score).apply()
+        }
+        findNavController().navigate(R.id.action_MiniGame3Fragment_to_HomeFragment)*/
         list()
-        timer.start()
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager =
+            GridLayoutManager(context, 4, RecyclerView.VERTICAL, false)
     }
 
     private fun list() {
@@ -110,17 +98,13 @@ class MiniGame3Fragment : Fragment() {
         pairList.add(Pair(exp, rand12))
         listGenerator()
         pairList.forEach {
-            list.add(it.first)
-            list.add(it.second.toString())
+            if (answerId <= 7) {
+                list.add(ListItem(it.first, answerId))
+                list.add(ListItem(it.second.toString(), answerId))
+            }
+            answerId++
         }
         list.shuffle()
-        val itemAdapter = GVAdapter(itemList = list)
-        itemGV.adapter = itemAdapter
-        itemGV.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            if (pairList.elementAt(position).first == pairList.elementAt(position).second.toString())
-            else
-                Toast.makeText(requireContext(), " that not my boy ", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun listGenerator() {
@@ -153,9 +137,9 @@ class MiniGame3Fragment : Fragment() {
         exp = "$rand1 $operator $rand2"
         if (pairList.size <= 7) {
             pairList.forEach {
-                if (it.second != rand12) {
+                if (it.second != rand12)
                     pairList.add(Pair(exp, rand12))
-                } else
+                else
                     return listGenerator()
                 return listGenerator()
             }
@@ -163,7 +147,6 @@ class MiniGame3Fragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        timer.cancel()
         _binding = null
         super.onDestroyView()
     }
