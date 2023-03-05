@@ -145,8 +145,8 @@ class MiniGame2Fragment : Fragment() {
         }
         exp1 = "$rand1 $operator1 $rand2"
         exp2 = "$rand3 $operator2 $rand4"
-        binding.tvExpression1.text = exp1
-        binding.tvExpression2.text = exp2
+        binding.tvEquation1.text = exp1
+        binding.tvEquation2.text = exp2
         binding.imgFalse.setOnClickListener {
             if (rand12 != rand34) {
                 binding.tvResult.text = randCorrectAnswerDialog[Random.nextInt(0, 5)]
@@ -206,8 +206,8 @@ class MiniGame2Fragment : Fragment() {
     }
 
     private fun problemsGenerator(boolean: Boolean) {
-        binding.tvExpression1.visibility = View.GONE
-        binding.tvExpression2.visibility = View.GONE
+        binding.tvEquation1.visibility = View.GONE
+        binding.tvEquation2.visibility = View.GONE
         if (score % 30 == 0 && boolean) {
             level++
             randFrom++
@@ -276,10 +276,10 @@ class MiniGame2Fragment : Fragment() {
         }
         exp1 = "$rand1 $operator1 $rand2"
         exp2 = "$rand3 $operator2 $rand4"
-        binding.tvExpression1.text = exp1
-        binding.tvExpression2.text = exp2
-        binding.tvExpression1.visibility = View.VISIBLE
-        binding.tvExpression2.visibility = View.VISIBLE
+        binding.tvEquation1.text = exp1
+        binding.tvEquation2.text = exp2
+        binding.tvEquation1.visibility = View.VISIBLE
+        binding.tvEquation2.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

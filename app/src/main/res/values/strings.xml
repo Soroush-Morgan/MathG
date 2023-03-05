@@ -10,8 +10,9 @@
     <string name="countdown">60</string>
     <string name="current_level">1</string>
     <string name="equal">برابر</string>
-    <string name="expression1">1 + 2</string>
-    <string name="expression2">2 + 1</string>
+    <string name="equation">1 + 1</string>
+    <string name="equation1">1 + 2</string>
+    <string name="equation2">2 + 1</string>
     <string name="false_button">False Button</string>
     <string name="final_score">امتیاز نهایی شما:</string>
     <string name="game_1">بازی مقایسه \n بالاترین امتیاز :\n بالاترین مرحله :</string>
@@ -46,5 +47,5 @@
     <string name="timer_dialog">: زمان</string>
     <string name="true_button">True Button</string>
     <string name="unknown">\?</string>
-    <string name="unknown_expression">Unknown Expression</string>
+    <string name="unknown_equation">Unknown Equation</string>
 </resources>

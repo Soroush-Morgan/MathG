@@ -56,11 +56,11 @@
         app:srcCompat="@drawable/ic_timer" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_unknown_expression"
+        android:id="@+id/img_unknown_equation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/colorSecondary"
-        android:contentDescription="@string/unknown_expression"
+        android:contentDescription="@string/unknown_equation"
         app:layout_constraintBottom_toBottomOf="@id/img_sign"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/img_sign"
@@ -68,11 +68,11 @@
         app:srcCompat="@drawable/ic_question" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_expression"
+        android:id="@+id/tv_equation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/expression1"
+        android:text="@string/equation"
         android:textColor="?attr/colorPrimary"
         android:textSize="56sp"
         app:layout_constraintBottom_toBottomOf="@id/img_sign"

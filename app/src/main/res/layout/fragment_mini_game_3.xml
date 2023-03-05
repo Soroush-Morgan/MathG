@@ -19,6 +19,18 @@
         app:srcCompat="@drawable/ic_level" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/health"
+        app:layout_constraintBottom_toTopOf="@id/tv_health"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_heart" />
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,16 +44,44 @@
         app:srcCompat="@drawable/ic_score" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_health"
+        android:id="@+id/img_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="@string/sign"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_equal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_equation1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="?attr/colorSecondary"
-        android:contentDescription="@string/health"
-        app:layout_constraintBottom_toTopOf="@id/tv_health"
+        android:gravity="center"
+        android:text="@string/unknown"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_sign"
+        app:layout_constraintEnd_toStartOf="@+id/img_sign"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_sign" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_equation2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/unknown"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_sign"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_heart" />
+        app:layout_constraintStart_toEndOf="@+id/img_sign"
+        app:layout_constraintTop_toTopOf="@+id/img_sign" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_level"

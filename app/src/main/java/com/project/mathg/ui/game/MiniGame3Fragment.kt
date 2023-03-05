@@ -2,9 +2,11 @@ package com.project.mathg.ui.game
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,13 +18,14 @@ import com.project.mathg.databinding.FragmentMiniGame3Binding
 import com.project.mathg.model.ListItem
 import kotlin.random.Random
 
-class MiniGame3Fragment : Fragment() {
+class MiniGame3Fragment : Fragment(), RecyclerViewAdapter.ItemChecker {
     private lateinit var sharedPreferences: SharedPreferences
     private var _binding: FragmentMiniGame3Binding? = null
     private val binding get() = _binding!!
+    private var clicked: ListItem? = null
     private var list = ArrayList<ListItem>()
     private var answerId: Int = 0
-    private var adapter = RecyclerViewAdapter(list)
+    private var adapter = RecyclerViewAdapter(list, this)
     private var level = 0
     private var pairList = arrayListOf<Pair<String, Int>>()
     private var operator: Char? = null
@@ -99,8 +102,15 @@ class MiniGame3Fragment : Fragment() {
         listGenerator()
         pairList.forEach {
             if (answerId <= 7) {
-                list.add(ListItem(it.first, answerId))
-                list.add(ListItem(it.second.toString(), answerId))
+                list.add(ListItem(it.first, isCardBack = false, isClickable = true, answerId))
+                list.add(
+                    ListItem(
+                        it.second.toString(),
+                        isCardBack = false,
+                        isClickable = true,
+                        answerId
+                    )
+                )
             }
             answerId++
         }
@@ -137,10 +147,8 @@ class MiniGame3Fragment : Fragment() {
         exp = "$rand1 $operator $rand2"
         if (pairList.size <= 7) {
             pairList.forEach {
-                if (it.second != rand12)
-                    pairList.add(Pair(exp, rand12))
-                else
-                    return listGenerator()
+                if (it.second != rand12) pairList.add(Pair(exp, rand12))
+                else return listGenerator()
                 return listGenerator()
             }
         }
@@ -150,4 +158,21 @@ class MiniGame3Fragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+    override fun firstClicked(listItem: ListItem) {
+        if (clicked == null) {
+            clicked = listItem
+            binding.tvEquation1.text = listItem.answer
+        } else if (clicked == listItem) {
+            binding.tvEquation2.text = listItem.answer
+        } else if (clicked != listItem) {
+            if (clicked!!.id == listItem.id) {
+                list.remove(clicked)
+                list.remove(listItem)
+            }
+            Toast.makeText(context, "روی خود ایتم نزدی داداچ", Toast.LENGTH_SHORT).show()
+            clicked = listItem
+        }
+
+    }
+
 }

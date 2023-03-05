@@ -56,11 +56,11 @@
         app:srcCompat="@drawable/ic_timer" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_expression1"
+        android:id="@+id/tv_equation1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/expression1"
+        android:text="@string/equation1"
         android:textColor="?attr/colorPrimary"
         android:textSize="56sp"
         app:layout_constraintBottom_toBottomOf="@id/img_sign"
@@ -69,11 +69,11 @@
         app:layout_constraintTop_toTopOf="@id/img_sign" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_expression2"
+        android:id="@+id/tv_equation2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/expression2"
+        android:text="@string/equation2"
         android:textColor="?attr/colorPrimary"
         android:textSize="56sp"
         app:layout_constraintBottom_toBottomOf="@id/img_sign"

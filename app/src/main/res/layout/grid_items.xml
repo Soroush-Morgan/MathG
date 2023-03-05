@@ -10,7 +10,7 @@
     app:cardCornerRadius="8dp">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_expression_item"
+        android:id="@+id/tv_unknown"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
