@@ -8,12 +8,12 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.transition.Slide
 import android.transition.TransitionManager
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -30,16 +30,14 @@ class MiniGame4Fragment : Fragment() {
     private var level = 1
     private var operator: Char? = null
     private var randFrom: Int = 1
-    private var randUntil: Int = 5
+    private var randUntil: Int = 10
     private var rand1: Int = Random.nextInt(randFrom, randUntil)
     private var rand2: Int = Random.nextInt(randFrom, randUntil)
-    private var rand12: Int = rand1 + rand2
+    private var rand12 = 0
     private var exp = "$rand1 $operator $rand2"
     private var randCorrectAnswer = Random.nextInt(0, 4)
-    private var randCorrectAnswerDialog =
-        arrayListOf("آفرین", "احسنت", "عالی بود", "فوق العاده بود", "محشر بود")
-    private var randWrongAnswerDialog =
-        arrayListOf("مطمئنی?", "دوباره سعی کن!", "فکر نکنم!")
+    private var randCorrectAnswerDialog = arrayListOf("آفرین", "احسنت", "عالی بود", "فوق العاده بود", "محشر بود")
+    private var randWrongAnswerDialog = arrayListOf("مطمئنی?", "دوباره سعی کن!", "فکر نکنم!")
     private var randOperator: Int = Random.nextInt(0, 4)
     private var score = 0
     private var lSlider = Slide()
@@ -90,8 +88,7 @@ class MiniGame4Fragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun answersGenerator() {
-        randCorrectAnswer = Random.nextInt(0, 4)
+    private fun answersChecker() {
         when (randCorrectAnswer) {
             0 -> {
                 binding.btnAnswer1.text = rand12.toString()
@@ -120,8 +117,7 @@ class MiniGame4Fragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun questions() {
+    private fun operatorChecker() {
         when (randOperator) {
             0 -> {
                 rand12 = rand1 + rand2
@@ -140,32 +136,35 @@ class MiniGame4Fragment : Fragment() {
                 operator = '/'
             }
         }
-        when (randCorrectAnswer) {
-            0 -> {
-                binding.btnAnswer1.text = rand12.toString()
-                binding.btnAnswer2.text = (rand12 + Random.nextInt(1, 3)).toString()
-                binding.btnAnswer3.text = (rand12 - Random.nextInt(1, 3)).toString()
-                binding.btnAnswer4.text = (rand12 + Random.nextInt(4, 5)).toString()
-            }
-            1 -> {
-                binding.btnAnswer1.text = (rand12 + Random.nextInt(1, 3)).toString()
-                binding.btnAnswer2.text = rand12.toString()
-                binding.btnAnswer3.text = (rand12 - Random.nextInt(1, 3)).toString()
-                binding.btnAnswer4.text = (rand12 + Random.nextInt(4, 5)).toString()
-            }
-            2 -> {
-                binding.btnAnswer1.text = (rand12 + Random.nextInt(1, 3)).toString()
-                binding.btnAnswer2.text = (rand12 - Random.nextInt(1, 3)).toString()
-                binding.btnAnswer3.text = rand12.toString()
-                binding.btnAnswer4.text = (rand12 + Random.nextInt(4, 5)).toString()
-            }
-            3 -> {
-                binding.btnAnswer1.text = (rand12 + Random.nextInt(1, 3)).toString()
-                binding.btnAnswer2.text = (rand12 - Random.nextInt(1, 3)).toString()
-                binding.btnAnswer3.text = (rand12 + Random.nextInt(4, 5)).toString()
-                binding.btnAnswer4.text = rand12.toString()
-            }
+    }
+
+    private fun problemsGenerator(boolean: Boolean) {
+        binding.tvEquation.visibility = View.GONE
+        if (score % 10 == 0 && boolean) {
+            level++
+            randFrom++
+            randUntil++
+            rand1 = Random.nextInt(randFrom, randUntil)
+            rand2 = Random.nextInt(randFrom, randUntil)
+            binding.tvLevel.text = level.toString()
+        } else {
+            rand1 = Random.nextInt(randFrom, randUntil)
+            rand2 = Random.nextInt(randFrom, randUntil)
         }
+        randOperator = Random.nextInt(0, 4)
+        operatorChecker()
+        exp = "$rand1 $operator $rand2"
+        randCorrectAnswer = Random.nextInt(0, 4)
+        answersChecker()
+        binding.tvEquation.text = exp
+        binding.tvEquation.visibility = View.VISIBLE
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun questions() {
+        operatorChecker()
+        randCorrectAnswer = Random.nextInt(0, 4)
+        answersChecker()
         exp = "$rand1 $operator $rand2"
         binding.tvEquation.text = exp
         binding.btnAnswer1.setOnClickListener {
@@ -280,44 +279,6 @@ class MiniGame4Fragment : Fragment() {
             }
             problemsGenerator(randCorrectAnswer == 3)
         }
-    }
-
-    private fun problemsGenerator(boolean: Boolean) {
-        binding.tvEquation.visibility = View.GONE
-        if (score % 10 == 0 && boolean) {
-            level++
-            randFrom++
-            randUntil++
-            rand1 = Random.nextInt(randFrom, randUntil)
-            rand2 = Random.nextInt(randFrom, randUntil)
-            binding.tvLevel.text = level.toString()
-        } else {
-            rand1 = Random.nextInt(randFrom, randUntil)
-            rand2 = Random.nextInt(randFrom, randUntil)
-        }
-        randOperator = Random.nextInt(0, 4)
-        when (randOperator) {
-            0 -> {
-                rand12 = rand1 + rand2
-                operator = '+'
-            }
-            1 -> {
-                rand12 = rand1 - rand2
-                operator = '-'
-            }
-            2 -> {
-                rand12 = rand1 * rand2
-                operator = '*'
-            }
-            3 -> {
-                rand12 = rand1 / rand2
-                operator = '/'
-            }
-        }
-        exp = "$rand1 $operator $rand2"
-        answersGenerator()
-        binding.tvEquation.text = exp
-        binding.tvEquation.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

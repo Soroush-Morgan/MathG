@@ -23,7 +23,6 @@ class RecyclerViewAdapter(
     }
 
     interface ItemChecker {
-        fun firstClicked(listItem: ListItem)
-
+        fun clicked(listItem: ListItem, position: Int)
     }
 }

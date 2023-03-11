@@ -29,6 +29,8 @@
     <string name="home">خانه</string>
     <string name="home_fragment">Home Page</string>
     <string name="remain_health">5</string>
+    <string name="remaining_time">5</string>
+    <string name="remaining_time_dialog">زمان باقیمانده تا برگشتن کارت ها:</string>
     <string name="score_dialog">: امتیاز</string>
     <string name="less_than">Less Than</string>
     <string name="level">Level</string>

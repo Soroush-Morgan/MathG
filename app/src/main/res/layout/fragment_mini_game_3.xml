@@ -84,6 +84,32 @@
         app:layout_constraintTop_toTopOf="@+id/img_sign" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/remain_health"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/img_health"
+        app:layout_constraintStart_toEndOf="@id/tv_health_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/img_health" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_health_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/health_dialog"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_health"
+        app:layout_constraintStart_toStartOf="@id/img_health"
+        app:layout_constraintTop_toBottomOf="@id/img_health" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,6 +134,33 @@
         app:layout_constraintEnd_toStartOf="@id/tv_level"
         app:layout_constraintStart_toStartOf="@id/img_level"
         app:layout_constraintTop_toBottomOf="@+id/img_level" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_remaining_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/remaining_time"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_remaining_time_dialog"
+        app:layout_constraintEnd_toStartOf="@id/tv_remaining_time_dialog"
+        app:layout_constraintTop_toTopOf="@+id/tv_remaining_time_dialog" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_remaining_time_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="@string/remaining_time_dialog"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/relative_layout"
+        app:layout_constraintEnd_toEndOf="@+id/relative_layout"
+        app:layout_constraintStart_toStartOf="@+id/relative_layout" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_score"
@@ -135,33 +188,8 @@
         app:layout_constraintStart_toStartOf="@id/img_score"
         app:layout_constraintTop_toBottomOf="@+id/img_score" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:text="@string/remain_health"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/img_health"
-        app:layout_constraintStart_toEndOf="@id/tv_health_dialog"
-        app:layout_constraintTop_toBottomOf="@+id/img_health" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_health_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:text="@string/health_dialog"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/tv_health"
-        app:layout_constraintStart_toStartOf="@id/img_health"
-        app:layout_constraintTop_toBottomOf="@id/img_health" />
-
     <RelativeLayout
+        android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_margin="16dp"
