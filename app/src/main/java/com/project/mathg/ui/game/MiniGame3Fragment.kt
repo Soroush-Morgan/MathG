@@ -15,7 +15,10 @@ import com.project.mathg.adapter.RecyclerViewAdapter
 import com.project.mathg.databinding.FragmentMiniGame3Binding
 import com.project.mathg.model.ListItem
 import com.project.mathg.R
+import java.util.Timer
+import java.util.TimerTask
 import kotlin.random.Random
+import org.chromium.base.ThreadUtils.runOnUiThread
 
 @Suppress("DEPRECATION")
 class MiniGame3Fragment : Fragment(), RecyclerViewAdapter.ItemChecker {
@@ -62,19 +65,31 @@ class MiniGame3Fragment : Fragment(), RecyclerViewAdapter.ItemChecker {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireActivity().getSharedPreferences("record", Context.MODE_PRIVATE)
-
+        var time = 5
+        val timer = Timer()
         list()
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager =
             GridLayoutManager(context, 4, RecyclerView.VERTICAL, false)
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                if (time == 0)
+                    runOnUiThread {
+                        binding.tvRemainingTime.visibility = View.GONE
+                        binding.tvRemainingTimeDialog.visibility = View.GONE
+                        timer.cancel()
+                    }
+                runOnUiThread {
+                    binding.tvRemainingTime.text = time.toString()
+                    time--
+                }
+            }
+        }, 0, 1000)
     }
 
     private fun clearClick() {
         android.os.Handler().postDelayed({
-            firstClicked = null
-            firstPosition = null
-            secondClicked = null
-            secondPosition = null
             binding.tvEquation1.text = "?"
             binding.tvEquation2.text = "?"
         }, 1000)
@@ -99,23 +114,8 @@ class MiniGame3Fragment : Fragment(), RecyclerViewAdapter.ItemChecker {
         listGenerator()
         pairList.forEach {
             if (answerId <= 7) {
-                list.add(
-                    ListItem(
-                        it.first, answerId,
-                        isCardBack = false,
-                        isClickable = false,
-                        isMatch = false
-                    )
-                )
-                list.add(
-                    ListItem(
-                        it.second.toString(),
-                        answerId,
-                        isCardBack = false,
-                        isClickable = false,
-                        isMatch = false
-                    )
-                )
+                list.add(ListItem(it.first, answerId, isCardBack = false, isClickable = false, isMatch = false))
+                list.add(ListItem(it.second.toString(), answerId, isCardBack = false, isClickable = false, isMatch = false))
             }
             answerId++
         }
